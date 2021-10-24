@@ -20,6 +20,7 @@ from django.urls import path, include
 
 urlpatterns = [
     path("admin/", admin.site.urls),
+    path("api/v1/bamazon/", include('apps.books.urls', namespace="books")),
 ]
 
 if DEBUG:
