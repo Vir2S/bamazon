@@ -4,76 +4,31 @@ from rest_framework.permissions import AllowAny, IsAdminUser
 
 from apps.books.models import Author, Book
 from apps.books.serializers import AuthorSerializer, BookSerializer
+from apps.books.permissions import ActionBasedPermission
 
 
-# class AuthorModelViewSet(viewsets.ModelViewSet):
-#     """
-#     A simple ViewSet for viewing and editing accounts.
-#     """
-#     queryset = Author.objects.all()
-#     serializer_class = AuthorSerializer
-#     permission_classes = (AllowAny,)
-#
-#
-# class BookModelViewSet(viewsets.ModelViewSet):
-#     """
-#     A simple ViewSet for viewing and editing accounts.
-#     """
-#     queryset = Book.objects.all()
-#     serializer_class = BookSerializer
-#     permission_classes = (AllowAny,)
-#     pagination_class = LimitOffsetPagination
-
-
-class AuthorGenericListAPIView(generics.ListAPIView):
+class AuthorModelViewSet(viewsets.ModelViewSet):
     """
-    A simple Generic List API View for viewing authors.
+    A simple ViewSet for viewing and editing accounts.
     """
     queryset = Author.objects.all()
     serializer_class = AuthorSerializer
-    permission_classes = (AllowAny,)
-    pagination_class = LimitOffsetPagination
+    permission_classes = (ActionBasedPermission,)
+    action_permissions = {
+        IsAdminUser: ["update", "partial_update", "destroy", "create"],
+        AllowAny: ["list", "retrieve"]
+    }
 
 
-class AuthorGenericRetrieveAPIView(generics.RetrieveAPIView):
+class BookModelViewSet(viewsets.ModelViewSet):
     """
-    A simple Generic List API View for retrieve single author's details.
-    """
-    queryset = Author.objects.all()
-    serializer_class = AuthorSerializer
-    permission_classes = (AllowAny,)
-
-
-class AuthorGenericCreateAPIView(generics.CreateAPIView):
-    """
-    A simple Generic Create API View for creating authors.
-    """
-    serializer_class = AuthorSerializer
-    permission_classes = (IsAdminUser,)
-
-
-class BookGenericListAPIView(generics.ListAPIView):
-    """
-    A simple Generic List API View for viewing books.
+    A simple ViewSet for viewing and editing accounts.
     """
     queryset = Book.objects.all()
     serializer_class = BookSerializer
-    permission_classes = (AllowAny,)
+    permission_classes = (ActionBasedPermission,)
     pagination_class = LimitOffsetPagination
-
-
-class BookGenericRetrieveAPIView(generics.RetrieveAPIView):
-    """
-    A simple Generic List API View for retrieve single book's details.
-    """
-    queryset = Book.objects.all()
-    serializer_class = BookSerializer
-    permission_classes = (AllowAny,)
-
-
-class BookGenericCreateAPIView(generics.CreateAPIView):
-    """
-    A simple Generic Create API View for creating books.
-    """
-    serializer_class = BookSerializer
-    permission_classes = (IsAdminUser,)
+    action_permissions = {
+        IsAdminUser: ["update", "partial_update", "destroy", "create"],
+        AllowAny: ["list", "retrieve"]
+    }
