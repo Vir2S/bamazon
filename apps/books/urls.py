@@ -7,8 +7,10 @@ app_name = "apps.books"
 
 urlpatterns = [
     path("books/", views.BookGenericListAPIView.as_view()),
+    path("books/<int:pk>/", views.BookGenericRetrieveAPIView.as_view()),
     path("books/create/", views.BookGenericCreateAPIView.as_view()),
     path("authors/", views.AuthorGenericListAPIView.as_view()),
+    path("authors/<int:pk>/", views.AuthorGenericRetrieveAPIView.as_view()),
     path("authors/create/", views.AuthorGenericCreateAPIView.as_view()),
 ]
 

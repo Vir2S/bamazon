@@ -32,6 +32,16 @@ class AuthorGenericListAPIView(generics.ListAPIView):
     queryset = Author.objects.all()
     serializer_class = AuthorSerializer
     permission_classes = (AllowAny,)
+    pagination_class = LimitOffsetPagination
+
+
+class AuthorGenericRetrieveAPIView(generics.RetrieveAPIView):
+    """
+    A simple Generic List API View for retrieve single author's details.
+    """
+    queryset = Author.objects.all()
+    serializer_class = AuthorSerializer
+    permission_classes = (AllowAny,)
 
 
 class AuthorGenericCreateAPIView(generics.CreateAPIView):
@@ -50,6 +60,15 @@ class BookGenericListAPIView(generics.ListAPIView):
     serializer_class = BookSerializer
     permission_classes = (AllowAny,)
     pagination_class = LimitOffsetPagination
+
+
+class BookGenericRetrieveAPIView(generics.RetrieveAPIView):
+    """
+    A simple Generic List API View for retrieve single book's details.
+    """
+    queryset = Book.objects.all()
+    serializer_class = BookSerializer
+    permission_classes = (AllowAny,)
 
 
 class BookGenericCreateAPIView(generics.CreateAPIView):
