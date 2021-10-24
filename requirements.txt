@@ -1,0 +1,8 @@
+Django==3.2.3
+django-debug-toolbar==3.2.1
+djangorestframework==3.12.4
+djangorestframework-jwt==1.11.0
+flake8==3.9.2
+isort==5.8.0
+mypy==0.812
+black
