@@ -10,4 +10,3 @@ class ActionBasedPermission(AllowAny):
             if view.action in actions:
                 return klass().has_permission(request, view)
         return False
-
